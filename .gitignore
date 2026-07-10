@@ -1,0 +1,13 @@
+# LocalStack data volume
+.localstack/
+
+# IDE files
+.idea/
+*.iml
+
+# Build directories
+target/
+build/
+
+# Secret tokens and local environment variables
+.env
