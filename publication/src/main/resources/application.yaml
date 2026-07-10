@@ -1,0 +1,37 @@
+server:
+  port: 8082
+spring:
+  kafka:
+    bootstrap-servers: localhost:29092
+    consumer:
+      group-id: publication-service
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+        spring.json.type.mapping: "user_created_event:com.researchConnect.publication.dto.UserCreatedDto"
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5434}/publication_db
+    username: pub_admin
+    password: pub_secure_password
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+aws:
+  s3:
+    region: ap-south-1
+    access-key: test            # LocalStack accepts dummy credentials
+    secret-key: test
+    endpoint-override: http://localhost:4566
+    bucket-name: research-connect-publications
