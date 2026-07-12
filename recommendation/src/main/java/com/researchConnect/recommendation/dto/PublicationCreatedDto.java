@@ -1,6 +1,6 @@
-package com.researchConnect.publication.event;
+package com.researchConnect.recommendation.dto;
 
-public record PublicationCreatedEvent (
+public record PublicationCreatedDto (
         Long id,
         String title,
         String description,

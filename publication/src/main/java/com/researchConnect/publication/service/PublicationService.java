@@ -69,7 +69,7 @@ public class PublicationService {
                 savedPublication.getTitle(),
                 savedPublication.getDescription(),
                 savedPublication.getS3Key(),
-                user.getId()
+                authenticatedUserID
         );
 
         publicationEventProducer.sendPublicationCreatedEvent(publicationCreatedEvent);
